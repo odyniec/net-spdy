@@ -150,23 +150,6 @@ sub process_frame
 	}
 
 	if ($frame{type} == Net::SPDY::Framer::SYN_STREAM) {
-		my $body = 'Hello, World!';
-
-		$self->{framer}->write_syn_reply (
-			stream_id => $frame{stream_id},
-			flags => 0,
-			headers => [
-			      ':status' => '200 Ok',
-			      ':version' => 'HTTP/1.1',
-			      'content-length' => length($body),
-			]
-		);
-		$self->{framer}->write_frame (
-			control => 0,
-			stream_id => $frame{stream_id},
-			flags => Net::SPDY::Framer::FLAG_FIN,
-			data => $body,
-		);
 	} elsif ($frame{type} == Net::SPDY::Framer::SETTINGS) {
 		$self->got_settings (%frame);
 	} elsif ($frame{type} == Net::SPDY::Framer::PING) {
