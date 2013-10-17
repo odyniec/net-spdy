@@ -162,6 +162,7 @@ sub process_frame
 	} elsif ($frame{type} == Net::SPDY::Framer::HEADERS) {
 		# We should remember values gotten here for stream
 		warn 'Not implemented: Got headers frame'
+	} elsif ($frame{type} == Net::SPDY::Framer::WINDOW_UPDATE) {
 	} else {
 		die 'Unknown frame type '.$frame{type};
 	}
